@@ -49,6 +49,9 @@
       }
 
       action_app();
+      var canvas = document.querySelector("#unity-canvas");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/test.data",
