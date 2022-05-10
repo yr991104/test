@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | templete_test</title>
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas" width=960 height=600 style="width: 100%; height: 100%; background: #231F20"></canvas>
+    <script src="Build/test.loader.js"></script>
+    <script>
+      function checkMobile(){
+        var varUA = navigator.userAgent.toLowerCase();
+
+        if (varUA.indexOf('android') > -1){
+          return 'android';
+        }
+        else if (varUA.indexOf('iphone') > -1 || varUA.indexOf("ipad") > -1 ||varUA.indexOf("ipod") > -1){
+          return 'ios';
+        }
+        else{
+          return 'other';
+        }
+      }
+
+      function checkChrome(){
+        var varUA = navigator.userAgent.toLowerCase();
+
+        varUA = varUA.split(' ')
+
+        if (varUA[varUA.length - 1].startsWith('safari')){
+          return 'chrome';
+        }
+        else{
+          return 'other';
+        }
+      }
+
+      function action_app(){
+        var result_check_mob = checkMobile();
+        var result_check_chr = checkChrome();
+
+        if (result_check_mob == 'android' && result_check_chr == 'other'){
+          location.href='intent://'+location.href.replace(/https?:\/\//i,'')+'#Intent;scheme=http;package=com.android.chrome;end';
+        }
+        else if (result_check_mob == 'ios' && result_check_chr == 'other'){
+          location.href=location.href.replace(/https?:\/\//i,'http');
+        }
+      }
+
+      action_app();
+      SetFullscreen(1);
+
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/test.data",
+        frameworkUrl: "Build/test.framework.js",
+        codeUrl: "Build/test.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "templete_test",
+        productVersion: "0.1",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  </body>
+</html>
