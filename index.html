@@ -36,27 +36,23 @@
         }
       }
 
-      function checkSafari(){
-        var varUA = navigator.userAgent.toLowerCase();
-
-        if (varUA.indexOf('safari') > -1){
-          return 'safari'
-        }
-        else{
-          return 'other'
-        }
-      }
-
       function action_app(){
         var result_check_mob = checkMobile();
         var result_check_chr = checkChrome();
-        var result_check_sfr = checkSafari();
+        var visitedAt = (new Date()).getTime();
 
         if (result_check_mob == 'android' && result_check_chr == 'other'){
           location.href='intent://'+location.href.replace(/https?:\/\//i,'')+'#Intent;scheme=http;package=com.android.chrome;end';
         }
-        else if (result_check_mob == 'ios' && result_check_sfr == 'other'){
-          location.href='{location.href}';
+        else if (result_check_mob == 'ios' && result_check_chr == 'other'){
+          setTimeout( function () {
+					  if ( ( new Date() ).getTime() - visitedAt < 2000 ) {
+						  location.href = "https://itunes.apple.com/app/id535886823";
+					  }
+				  } ,500 );
+				  setTimeout( function () {
+					  location.href = "http://";
+				  } ,0 );
         }
       }
 
