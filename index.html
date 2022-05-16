@@ -26,17 +26,16 @@
         var varUA = navigator.userAgent.toLowerCase();
 
         if (varUA.indexOf('android') > -1){
-          container.className = "unity-mobile";
+          //container.className = "unity-mobile";
           return 'android';
         }
         else if (varUA.indexOf('iphone') > -1 || varUA.indexOf("ipad") > -1 ||varUA.indexOf("ipod") > -1){
-          container.className = "unity-mobile";
+          //container.className = "unity-mobile";
           return 'ios';
         }
         else{
           canvas.style.width = "960px";
           canvas.style.height = "600px";
-          container.className = "unity-mobile";
           return 'other';
         }
       }
@@ -75,9 +74,6 @@
       }
 
       action_app();
-      var canvas = document.querySelector("#unity-canvas");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/test.data",
@@ -87,8 +83,6 @@
         companyName: "DefaultCompany",
         productName: "templete_test",
         productVersion: "0.1",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
     </script>
   </body>
