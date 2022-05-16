@@ -15,7 +15,7 @@
       .unity-mobile #unity-canvas { width: 100%; height: 100% }
     </style>
     <div id = "unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width= 960 height= 600></canvas>
+      <canvas id="unity-canvas"></canvas>
     </div>
     <script src="Build/test.loader.js"></script>
     <script>
@@ -47,8 +47,6 @@
           return 'ios';
         }
         else{
-          canvas.style.width = "960px";
-          canvas.style.height = "600px";
           return 'other';
         }
       }
