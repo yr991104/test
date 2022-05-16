@@ -5,20 +5,33 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | templete_test</title>
   </head>
-  <body style="text-align: center; padding: 0; margin: 0; width: 100%; height: 100%">
-    <canvas id="unity-canvas" style="width: 100%; height: 100%; margin: 0 0 0 0; background: #231F20"></canvas>
+  <body style="text-align: center; padding: 0; margin: 0;">
+    <style>
+      #unity-container {position: absolute}
+      #unity-container.unity_desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
+      #unity-container.unity-mobile { width: 100%; height: 100% }
+      #unity-canvas { background: #231F20 }
+      .unity-mobile #unity-canvas { width: 100%; height: 100%;}
+    </style>
+    <div id = "unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" style="width: 960; height: 600;"></canvas>
+    </div>
     <script src="Build/test.loader.js"></script>
     <script>
       function checkMobile(){
         var varUA = navigator.userAgent.toLowerCase();
 
         if (varUA.indexOf('android') > -1){
+          container.className = 'unity-mobile';
           return 'android';
         }
         else if (varUA.indexOf('iphone') > -1 || varUA.indexOf("ipad") > -1 ||varUA.indexOf("ipod") > -1){
+          container.className = 'unity-mobile';
           return 'ios';
         }
         else{
+          canvas.style.width = "960px";
+          canvas.style.height = "600px";
           return 'other';
         }
       }
