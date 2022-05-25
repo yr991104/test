@@ -72,7 +72,7 @@
         var visitedAt = (new Date()).getTime();
 
         if (result_check_mob == 'android' && result_check_chr == 'other'){
-          location.href='intent://'+location.href+'#Intent;scheme=http;package=com.android.chrome;end';
+          location.href='intent://'+location.href.replace(/https?:\/\//i,'https:\/\/')+'#Intent;scheme=http;package=com.android.chrome;end';
         }
         else if (result_check_mob == 'ios' && result_check_chr == 'other'){
           setTimeout( function () {
